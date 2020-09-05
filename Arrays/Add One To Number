@@ -1,0 +1,53 @@
+Add One To Number
+
+Given a non-negative number represented as an array of digits,
+
+add 1 to the number ( increment the number represented by the digits ).
+
+The digits are stored such that the most significant digit is at the head of the list.
+
+Example:
+
+If the vector has [1, 2, 3]
+
+the returned vector should be [1, 2, 4]
+
+as 123 + 1 = 124.
+
+******************************************************************************
+Java Solution
+******************************************************************************
+
+    public int[] plusOne(int[] d) {
+        int n = d.length;
+        int i;
+		
+        for(i = n-1; i>= 0; i--) {
+            if (d[i] != 9) {
+                d[i]++;
+                break;
+            }
+            d[i] = 0;
+        }
+        
+        // if end reached
+        if (d[0] == 0 && i < 0) {
+            int [] newD = new int[n+1];
+            newD[0] = 1;
+            return newD;
+        }
+		
+        //check leading zero
+        if (d[0] == 0) {
+            i = 0;
+            while(d[i] == 0) i++;
+            int m = n - i;
+            int [] newD = new int[m];
+            int j = 0;
+            for(; i< n; i++)
+                newD[j++] = d[i];
+            return newD;
+        }
+        
+        return d;
+    }

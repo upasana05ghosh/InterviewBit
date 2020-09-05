@@ -1,0 +1,58 @@
+Rotate Matrix
+
+You are given an n x n 2D matrix representing an image.
+Rotate the image by 90 degrees (clockwise).
+You need to do this in place.
+Note that if you end up using an additional array, you will only receive partial score.
+
+Example:
+
+If the array is
+
+[
+    [1, 2],
+    [3, 4]
+]
+
+Then the rotated array becomes:
+
+[
+    [3, 1],
+    [4, 2]
+]
+
+
+******************************************************************************
+Java Solution
+******************************************************************************
+
+    public void rotate(ArrayList<ArrayList<Integer>> a) {
+        for(int i = 0; i< a.size()/2 ; i++) {
+            int j = a.size() -1 -i ;
+            for(int k = 0; k< a.size(); k++) {
+                swap(a, i, j, k);
+            }
+        }
+        
+        for(int i = 0; i< a.size(); i++) {
+            for(int j = i+1; j< a.size(); j++) {
+                swapDiag(a, i, j);
+            }
+        }
+    }
+    
+    private void swap(ArrayList<ArrayList<Integer>> a, int i, int j, int k) {
+        int x = a.get(i).get(k);
+        int y = a.get(j).get(k);
+        
+        a.get(i).set(k, y);
+        a.get(j).set(k, x);
+    }
+    
+    private void swapDiag(ArrayList<ArrayList<Integer>> a, int i, int j) {
+        int x = a.get(i).get(j);
+        int y = a.get(j).get(i);
+        
+        a.get(i).set(j, y);
+        a.get(j).set(i, x);
+    }
